@@ -6,43 +6,33 @@ class KindsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get index" do
-    get kinds_url
-    assert_response :success
-  end
-
-  test "should get new" do
-    get new_kind_url
+    get kinds_url, as: :json
     assert_response :success
   end
 
   test "should create kind" do
     assert_difference('Kind.count') do
-      post kinds_url, params: { kind: { description: @kind.description } }
+      post kinds_url, params: { kind: { description: @kind.description } }, as: :json
     end
 
-    assert_redirected_to kind_url(Kind.last)
+    assert_response 201
   end
 
   test "should show kind" do
-    get kind_url(@kind)
-    assert_response :success
-  end
-
-  test "should get edit" do
-    get edit_kind_url(@kind)
+    get kind_url(@kind), as: :json
     assert_response :success
   end
 
   test "should update kind" do
-    patch kind_url(@kind), params: { kind: { description: @kind.description } }
-    assert_redirected_to kind_url(@kind)
+    patch kind_url(@kind), params: { kind: { description: @kind.description } }, as: :json
+    assert_response 200
   end
 
   test "should destroy kind" do
     assert_difference('Kind.count', -1) do
-      delete kind_url(@kind)
+      delete kind_url(@kind), as: :json
     end
 
-    assert_redirected_to kinds_url
+    assert_response 204
   end
 end

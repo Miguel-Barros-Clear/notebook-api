@@ -1,60 +1,41 @@
 class KindsController < ApplicationController
-  before_action :set_kind, only: %i[ show edit update destroy ]
+  before_action :set_kind, only: [:show, :update, :destroy]
 
-  # GET /kinds or /kinds.json
+  # GET /kinds
   def index
-    @kinds = Kind.all, methods: :author
+    @kinds = Kind.all
+
+    render json: @kinds
   end
 
-  # GET /kinds/1 or /kinds/1.json
+  # GET /kinds/1
   def show
+    render json: @kind
   end
 
-  # GET /kinds/new
-  def new
-    @kind = Kind.new
-  end
-
-  # GET /kinds/1/edit
-  def edit
-  end
-
-  # POST /kinds or /kinds.json
+  # POST /kinds
   def create
     @kind = Kind.new(kind_params)
 
-    respond_to do |format|
-      if @kind.save
-        format.html { redirect_to kind_url(@kind), notice: "Kind was successfully created." }
-        format.json { render :show, status: :created, location: @kind }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @kind.errors, status: :unprocessable_entity }
-      end
+    if @kind.save
+      render json: @kind, status: :created, location: @kind
+    else
+      render json: @kind.errors, status: :unprocessable_entity
     end
   end
 
-  # PATCH/PUT /kinds/1 or /kinds/1.json
+  # PATCH/PUT /kinds/1
   def update
-    respond_to do |format|
-      if @kind.update(kind_params)
-        format.html { redirect_to kind_url(@kind), notice: "Kind was successfully updated." }
-        format.json { render :show, status: :ok, location: @kind }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @kind.errors, status: :unprocessable_entity }
-      end
+    if @kind.update(kind_params)
+      render json: @kind
+    else
+      render json: @kind.errors, status: :unprocessable_entity
     end
   end
 
-  # DELETE /kinds/1 or /kinds/1.json
+  # DELETE /kinds/1
   def destroy
     @kind.destroy
-
-    respond_to do |format|
-      format.html { redirect_to kinds_url, notice: "Kind was successfully destroyed." }
-      format.json { head :no_content }
-    end
   end
 
   private
@@ -63,7 +44,7 @@ class KindsController < ApplicationController
       @kind = Kind.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
+    # Only allow a trusted parameter "white list" through.
     def kind_params
       params.require(:kind).permit(:description)
     end
