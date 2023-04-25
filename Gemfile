@@ -9,6 +9,8 @@ gem 'rails', '~> 5.2.0'
 gem 'faker'
 gem 'sqlite3'
 gem 'rails-i18n'
+gem 'pry-rails'
+
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets
