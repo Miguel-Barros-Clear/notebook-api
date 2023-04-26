@@ -12,6 +12,7 @@ gem 'rails-i18n'
 gem 'pry-rails'
 gem 'active_model_serializers'
 gem 'foreman'
+gem 'jwt'
 
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
