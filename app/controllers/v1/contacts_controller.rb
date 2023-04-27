@@ -7,12 +7,16 @@ module V1
     def index
       page_number = params[:page].try(:[], :number)
       per_page = params[:page].try(:[], :size)
-      
+
       @contacts = Contact.all.page(page_number).per(per_page)
       
       # cache control expires_in 30.seconds, public: true
 
-      render json: @contacts
+       #if stale?(last_modified: @contact[0].updated_at)
+       
+      if stale?(etag: @contacts)
+        render json: @contacts
+      end
       # paginate json: @contacts #, methods: :birthdate_br
     end
 
