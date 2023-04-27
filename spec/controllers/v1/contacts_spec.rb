@@ -7,7 +7,7 @@ describe V1::ContactsController, type: :controller do
         expect(response.status).to eql(200)
     end
 
-    it 'request index and return 406 OK' do
+    it 'request index and return 406 Not accepted' do
         get :index
         expect(response.status).to eql(406)
     end
