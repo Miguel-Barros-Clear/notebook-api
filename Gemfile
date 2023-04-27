@@ -14,6 +14,8 @@ gem 'active_model_serializers'
 gem 'foreman'
 gem 'jwt'
 gem 'versionist'
+gem 'kaminari'
+gem 'api-pagination'
 
 # Use Puma as the app server
 gem 'puma', '~> 3.11'

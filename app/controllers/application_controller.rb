@@ -13,3 +13,5 @@ class ApplicationController < ActionController::API
         end
     end
 end
+
+# Continuar da paginate
