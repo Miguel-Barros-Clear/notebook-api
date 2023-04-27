@@ -15,7 +15,7 @@ gem 'foreman'
 gem 'jwt'
 gem 'versionist'
 gem 'kaminari'
-gem 'api-pagination'
+#gem 'api-pagination'
 
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
