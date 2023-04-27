@@ -22,7 +22,7 @@ module V1
 
     # GET /contacts/1 or /contacts/1.json
     def show
-      render json: @contact, include: [:kind, :address, :phones] #, meta: { author: "Miguel" }
+      render json: @contact #, include: [:kind, :address, :phones] #, meta: { author: "Miguel" }
     end
 
     # GET /contacts/new

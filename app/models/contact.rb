@@ -4,7 +4,6 @@ class Contact < ApplicationRecord
     has_one :address
 
     validates_presence_of :kind
-    validates_presence_of :address
 
     paginates_per 5
 
